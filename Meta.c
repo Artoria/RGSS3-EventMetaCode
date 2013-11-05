@@ -4,7 +4,7 @@ start();
       start();
         casewhen(0); 
           start();
-            switchid();
+            entity("switch");
             enumcase("打开", "关闭");
           stop();
         
@@ -14,8 +14,8 @@ start();
             
             selectcase("直接指定", "变量指定", end_item());
             start();
-              casewhen(0); start(); number(); stop(); 
-              casewhen(1); start(); varid (); stop();
+              casewhen(0); start(); entity("number"); stop(); 
+              casewhen(1); start(); entity("var"); stop();
             stop();
             
             enumcase("等于", "以上", "以下", "大于", "小于", "不等于", end_item());
