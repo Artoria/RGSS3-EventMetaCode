@@ -49,13 +49,13 @@
           start();
             entity("变量编号", "var");
             
-            selectcase("常量", "变量", end_item());#2
-            start();#3
+            selectcase("常量", "变量", end_item());
+            start();
               casewhen(0); start(); entity("常量", "number"); stop(); 
               casewhen(1); start(); entity("变量", "var"); stop();
             stop();
             
-            #4
+            
             enumcase("关系", "等于", "以上", "以下", "大于", "小于", "不等于", end_item());
           stop();
           
