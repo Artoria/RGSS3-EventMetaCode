@@ -39,23 +39,9 @@ which will change the event command structure, often it means you will need to c
  
 which will not change the event command structure, often it means you just select a value in a combobox of the editor.
 
- - switchid() : to get or set a game switch by id.
- - varid()    : to get or set a game variable by id.
- - actorid()  : to get or set a game actor by id.
- - classid()  : to get or set a game class by id.
- - skillid()  : to get or set a game skill by id.
- - itemid()   : to get or set a game item by id.
- - weaponid() : to get or set a game weapon by id.
- - armorid()  : to get or set a game armor by id.
- - enemyid()  : to get or set a game enemy by id.
- - troopid()  : to get or set a game troop by id.
- - stateid()  : to get or set a game state by id.
- - animaid()  : to get or set a game animation by id.
- - tilesetid(): to get or set a game tileset by id.
- - ceventid() : to get or set a game commonevent by id.
- 
- - color()    : to get or set a color.
- - tone()     : to get or set a tone.
- - string()   : to get or set a string.
+ - entity(*type*) : *type* can be 
+    "switch" "var" "actor" "class" "skill" "item" "weapon" "armor" "state" "animation" "tileset" "commonevent"
+    "color" "tone" "string"
+   which means an entity to get or set or display ...
  
 
