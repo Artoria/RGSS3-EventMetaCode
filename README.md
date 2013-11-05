@@ -36,7 +36,7 @@ assuming each of the event commands is like an array 'void* event_items[]', and 
  which will change the event command structure, often it means you will need to change the editor UI when this changed.
  - casewhen(*branch*): set the case number to *branch*
 
- - enumcase(*items*, *end_item()*): to tell the meta
+ - enumcase(*helpstring*, *items*, *end_item()*): to tell the meta
  
 which will not change the event command structure, often it means you just select a value in a combobox of the editor.
 
