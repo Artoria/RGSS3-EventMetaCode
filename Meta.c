@@ -1,4 +1,4 @@
-cmd("显示文章", 101);
+  cmd("显示文章", 101);
   start();
     entity("脸图", "string");
     entity("编号", "number");
@@ -469,7 +469,7 @@ cmd("显示文章", 101);
     stop();
     
     cmd("更换远景", 283); start(); 
-      entity("远景", "graphics/parallax");
+      entity("远景", "graphics/parallaxes");
       entity("X方向循环", "bool");
       entity("Y方向循环", "bool");
       entity("X位移", "number");
@@ -576,15 +576,15 @@ cmd("显示文章", 101);
     
     cmd("更改角色图像", 322); start();
       entity("角色", "actor");
-      entity("行走图", "graphics/character");
+      entity("行走图", "graphics/characters");
       entity("序号", "number");
-      entity("脸图", "graphics/face");
+      entity("脸图", "graphics/faces");
       entity("序号", "number");
     stop();
     
     cmd("更改载具图像", 323); start();
       entity("载具", "vehicle");
-      entity("图像文件", "graphics/character");
+      entity("图像文件", "graphics/characters");
       entity("序号", "number");
     stop();
     
@@ -693,4 +693,3 @@ cmd("显示文章", 101);
       enumcase("原价",   "是", "否", end_item());
       entity("价格", "number");
     stop();
-   
