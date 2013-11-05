@@ -24,5 +24,6 @@ You can use it for varied purposes like:
 
 just redefine several "functions" or "macros"(i.e. they are just like "abc(def)", s-expressions)
 
-
+ - end_item() : should return an end sign, in C it's NULL, in Ruby it can be nil
+ - 
 
