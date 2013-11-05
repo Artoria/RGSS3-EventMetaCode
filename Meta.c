@@ -1,4 +1,4 @@
- cmd("显示文章", 101);
+cmd("显示文章", 101);
   start();
     entity("脸图", "string");
     entity("编号", "number");
@@ -251,14 +251,14 @@
          entity("X坐标", "number");
          entity("Y坐标", "number");
          entity("方向", "direction");
-         enumcase("淡出", "普通", "白色", "无", end_item();
+         enumcase("淡出", "普通", "白色", "无", end_item());
        stop();
        casewhen(1); start();
          entity("地图", "var");
          entity("X坐标", "var");
          entity("Y坐标", "var");
          entity("方向", "direction");
-         enumcase("淡出", "普通", "白色", "无", end_item();
+         enumcase("淡出", "普通", "白色", "无", end_item());
        stop();
     stop();
     
@@ -308,7 +308,174 @@
        entity("路径", "rpg::moveroute");
       stop();
       
-    cmd("载具乘降", 206); start(); stop();
+      cmd("载具乘降", 206); start(); stop();
+      cmd("更改透明状态", 211); start(); enumcase("透明状态", "透明", "不透明", end_item()); stop();
+      cmd("显示动画", 212); start();
+        entity("事件", "event"); 
+        entity("动画", "animation");
+        entity("等待", "bool");
+      stop();
+      cmd("显示心情图标", 213); start();
+        entity("事件", "event"); 
+        entity("心情图标", "balloon");
+        entity("等待", "bool");
+      stop();
+      cmd("暂时消除事件", 214); start();
+        entity("事件", "event"); 
+      stop();
+      cmd("更改队列行进", 216); start();
+        enumcase("队列行进", "按队列", "只有主角", end_item());
+      stop();
+      
+      cmd("集合队伍成员", 217); start(); stop();
+      
+      cmd("淡出画面", 221); start(); stop();
+      cmd("淡入画面", 222); start(); stop();
+      cmd("更改画面色调", 223); start();
+        entity("色调", "tone");
+        entity("帧数", "number");
+        entity("等待完成", "bool");
+      stop();
+      cmd("画面闪烁", 224); start();
+        entity("色调", "tone");
+        entity("帧数", "number");
+        entity("等待完成", "bool");
+      stop();
+      cmd("画面震动", 225); start();
+        entity("强度", "number");
+        entity("速度", "number");
+        entity("帧数", "number");
+        entity("等待完成", "bool");
+      stop();
+      cmd("等待", 230); start();
+        entity("帧数", "number");
+      stop();
+      
+      cmd("显示图片", 231); start();
+        entity("图片序号", "picture_index");
+        entity("文件名", "graphics/pictures");
+        enumcase("原点", "左上", "中心", end_item());
+        selectcase("直接指定", "变量指定", end_item());
+         casewhen(0); start();
+           entity("X坐标", "number");
+           entity("Y坐标", "number");
+           entity("X放大倍数", "float");
+           entity("Y放大倍数", "float");
+           entity("透明度", "number");
+           enumcase("合成方式", "正常", "加法", "减法", end_item());
+         stop();
+         
+         casewhen(1); start();
+           entity("X坐标", "var");
+           entity("Y坐标", "var");
+           entity("X放大倍数", "float");
+           entity("Y放大倍数", "float");
+           entity("透明度", "number");
+           enumcase("合成方式", "正常", "加法", "减法", end_item());
+         stop();
+      stop();
+      
+      cmd("移动图片", 232);start();
+        entity("图片序号", "picture_index");
+        entity("", "null");
+        enumcase("原点", "左上", "中心", end_item());
+        selectcase("直接指定", "变量指定", end_item());
+         casewhen(0); start();
+           entity("X坐标", "number");
+           entity("Y坐标", "number");
+           entity("X放大倍数", "float");
+           entity("Y放大倍数", "float");
+           entity("透明度", "number");
+           enumcase("合成方式", "正常", "加法", "减法", end_item());
+           entity("等待帧数", "number");
+           entity("等待?", "bool");
+         stop();
+         
+         casewhen(1); start();
+           entity("X坐标", "var");
+           entity("Y坐标", "var");
+           entity("X放大倍数", "float");
+           entity("Y放大倍数", "float");
+           entity("透明度", "number");
+           enumcase("合成方式", "正常", "加法", "减法", end_item());
+           entity("等待帧数", "number");
+           entity("等待?", "bool");
+         stop();
+      stop();
+      
+      cmd("旋转图片", 233); start();
+        entity("图片编号", "picture_index");
+        entity("角度", "number");
+      stop();
+      
+      cmd("更改图片色调", 234); start();
+        entity("图片编号", "picture_index");
+        entity("色调", "tone");
+        entity("帧数", "number");
+        entity("等待完成", "bool");
+      stop();
+      cmd("消除图片", 235); start(); entity("图片编号", "picture_index"); stop();
+      cmd("设置天气", 236); start();
+        enumcase("天气", "无", "雨", "风", "雪", end_item());
+        entity("强度", "number");
+        entity("帧数", "number");
+        entity("等待完成", "bool");
+      stop();
+      
+      cmd("播放BGM", 241); start(); entity("BGM", "rpg::bgm"); stop();
+      cmd("淡出BGM", 242); start(); entity("帧数", "number"); stop();
+      cmd("记忆BGM", 243); start(); stop();
+      cmd("恢复BGM", 244); start(); stop();
+      cmd("播放BGS", 245); start(); entity("BGS", "rpg::bgs"); stop();
+      cmd("淡出BGS", 246); start(); entity("帧数", "number"); stop();
+      cmd("播放ME", 249); start(); entity("ME", "rpg::me"); stop();
+      cmd("播放SE", 250); start(); entity("SE", "rpg::se"); stop();
+      cmd("停止SE", 251); start(); stop();
+      cmd("播放影片", 261); start(); entity("影片", "rpg::movie"); stop();
+      cmd("切换地图名称显示", 281); cmd("设置载具位置", 202); start();
+      entity("载具", "vehicle");
+      selectcase("直接指定", "变量指定", end_item());
+       casewhen(0); start();
+         entity("地图", "map");
+         entity("X坐标", "number");
+         entity("Y坐标", "number");
+       stop();
+       casewhen(1); start();
+         entity("地图", "var");
+         entity("X坐标", "var");
+         entity("Y坐标", "var");
+       stop();
+    stop(); start(); enumcase("显示", "是", "否"); stop();
+    cmd("更换地图图块", 282); start(); entity("图块", "tileset"); stop();
+    cmd("更换战斗背景", 283); start(); 
+      entity("背景1", "graphics/battlebacks");
+      entity("背景2", "graphics/battlebacks"); 
+    stop();
+    
+    cmd("获取指定位置信息", 285); start();
+      entity("变量", "var");
+      enumcase("类别", "地形标志", "事件ID", "图块1层ID", "图块2层ID", "图块3层ID", "区域ID", end_item());
+      selectcase("直接指定", "变量指定", end_item());
+       casewhen(0); start();
+         entity("地图", "map");
+         entity("X坐标", "number");
+         entity("Y坐标", "number");
+       stop();
+       casewhen(1); start();
+         entity("地图", "var");
+         entity("X坐标", "var");
+         entity("Y坐标", "var");
+       stop();
+    stop();
+    
+    cmd("更换远景", 283); start(); 
+      entity("远景", "graphics/parallax");
+      entity("X方向循环", "bool");
+      entity("Y方向循环", "bool");
+      entity("X位移", "number");
+      entity("Y位移", "number");
+    stop();
+    
     
     
     cmd("商店处理", 302); start();
@@ -526,3 +693,4 @@
       enumcase("原价",   "是", "否", end_item());
       entity("价格", "number");
     stop();
+   
