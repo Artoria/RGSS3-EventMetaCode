@@ -13,7 +13,7 @@ start();
             varid();  
             
             selectcase("直接指定", "变量指定", end_item());
-            start();#3
+            start();
               casewhen(0); start(); number(); stop(); 
               casewhen(1); start(); varid (); stop();
             stop();
