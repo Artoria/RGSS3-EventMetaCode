@@ -30,10 +30,11 @@ assuming each of the event commands is like an array 'void* event_items[]', and 
  - end_item() : should return an end sign, in C it's NULL, in Ruby it can be nil
  - start()    : should increment the index, like '++pos'; in Ruby it can be @event_pos += 1
  - stop()     : should decrement the index, like '--pos'; in Ruby it can be @event_pos -= 1
- - cmd(id)    : to tell the meta system the command id to describe is *id*
+ - cmd(*id*)    : to tell the meta system the command id to describe is *id*
+ 
  - selectcase(*items*, *end_item()*) : to tell the meta system there is a branch here, like "Direct"/"By Variable" 
-   
-which will change the event command structure, often it means you will need to change the editor UI when this changed.
+ which will change the event command structure, often it means you will need to change the editor UI when this changed.
+ - casewhen(*branch*): set the case number to *branch*
 
  - enumcase(*items*, *end_item()*): to tell the meta
  
