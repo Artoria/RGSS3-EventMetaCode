@@ -195,8 +195,8 @@
     
     cmd("操作计时器", 124); start();
      selectcase("开始", "停止"); 
-        casewhen(0); start(); entity("秒数", "number"); end_item();
-        casewhen(1); start(); end_item();
+        casewhen(0); start(); entity("秒数", "number"); end_item(); stop();
+        casewhen(1); start(); end_item(); stop();
     stop();
     
     cmd("操作金钱", 125); start();
@@ -243,6 +243,159 @@
     cmd("设置禁用遇敌", 136); start(); entity("禁用遇敌", "bool"); stop();
     cmd("设置禁用整队", 137); start(); entity("禁用整队", "bool"); stop();
     cmd("更改窗口色调", 138); start(); entity("色调", "tone"); stop();
+    
+    cmd("场所移动", 201); start();
+      selectcase("直接指定", "变量指定", end_item());
+       casewhen(0); start();
+         entity("地图", "map");
+         entity("X坐标", "number");
+         entity("Y坐标", "number");
+         entity("方向", "direction");
+         enumcase("淡出", "普通", "白色", "无", end_item();
+       stop();
+       casewhen(1); start();
+         entity("地图", "var");
+         entity("X坐标", "var");
+         entity("Y坐标", "var");
+         entity("方向", "direction");
+         enumcase("淡出", "普通", "白色", "无", end_item();
+       stop();
+    stop();
+    
+    cmd("设置载具位置", 202); start();
+      entity("载具", "vehicle");
+      selectcase("直接指定", "变量指定", end_item());
+       casewhen(0); start();
+         entity("地图", "map");
+         entity("X坐标", "number");
+         entity("Y坐标", "number");
+       stop();
+       casewhen(1); start();
+         entity("地图", "var");
+         entity("X坐标", "var");
+         entity("Y坐标", "var");
+       stop();
+    stop();
+    
+    cmd("设置事件位置", 203); start();
+      entity("事件", "event");
+      selectcase("直接指定", "变量指定", "与事件交换", end_item());
+       casewhen(0); start();
+         entity("X坐标", "number");
+         entity("Y坐标", "number");
+         entity("方向", "direction");
+       stop();
+       casewhen(1); start();
+         entity("X坐标", "var");
+         entity("Y坐标", "var");
+         entity("方向", "direction");
+       stop();
+       casewhen(2); start();
+         entity("事件", "event");
+         entity("", "null");
+         entity("方向", "direction");
+       stop();
+    stop();
+    
+    cmd("设置画面卷动", 204); start();
+       entity("方向", "direction");
+       entity("距离", "number");
+       entity("速度", "number");
+    stop();
+    
+      cmd("设置移动路径", 205); start();
+       entity("事件", "event");
+       entity("路径", "rpg::moveroute");
+      stop();
+      
+    cmd("载具乘降", 206); start(); stop();
+    
+    
+    cmd("商店处理", 302); start();
+      entity("物品类型", "baseitem-type");
+      entity("物品id",   "baseitem-id");
+      enumcase("原价",   "是", "否", end_item());
+      entity("价格", "number");
+      entity("只能购买", "bool");
+    stop();
+    
+    cmd("名字输入", 303); start();
+       entity("角色", "actor");
+       entity("长度", "number");
+    stop();
+    
+    cmd("增减HP", 311); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); entity("允许死亡", "bool"); stop();
+        casewhen(1); start(); entity("变量", "var"); entity("允许死亡", "bool");stop();
+    stop();
+    
+    cmd("增减MP", 312); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); stop();
+        casewhen(1); start(); entity("变量", "var"); stop();
+    stop();
+    
+    cmd("更改状态", 313); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "增加状态", "减少状态", end_item());
+      entity("状态", "state");
+    stop();
+    
+    cmd("完全恢复", 314); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+    stop();
+    
+    cmd("增减经验值", 315); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); entity("显示升级信息", "bool"); stop();
+        casewhen(1); start(); entity("变量", "var"); entity("显示升级信息", "bool");stop();
+    stop();
+    
+    
+    cmd("增减等级", 316); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); entity("显示升级信息", "bool"); stop();
+        casewhen(1); start(); entity("变量", "var"); entity("显示升级信息", "bool");stop();
+    stop();
+    
+    cmd("增减能力值", 317); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("能力值", "MHP", "MMP", "ATK", "DEF", "MAT", "MDF", "AGI", "LUK", end_item());
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); entity("显示升级信息", "bool"); stop();
+        casewhen(1); start(); entity("变量", "var"); entity("显示升级信息", "bool");stop();
+    stop();
+    
+    cmd("增减技能", 318); start();
+      entity("序号1", "actor_index");
+      entity("序号2", "actor_index");
+      enumcase("操作", "学会", "遗忘", end_item());
+      entity("技能", "skill");
+    stop();
+    
+    cmd("更改装备", 319); start();
+      entity("角色", "actor_index");
+      entity("第几个位置", "number");
+      entity("什么装备", "number");
+    stop();
+    
     cmd("更改名字", 320); start();
       entity("角色", "actor");
       entity("名字", "string");
@@ -278,7 +431,7 @@
       enumcase("操作", "增加", "减少", end_item());
       selectcase("常量", "变量", end_item());
         casewhen(0); start(); entity("常量", "number"); entity("允许死亡", "bool"); stop();
-        casewhen(1); start(); entity("变量", "var"); stop();
+        casewhen(1); start(); entity("变量", "var"); entity("允许死亡", "bool");stop();
     stop();
     
     cmd("增减敌人MP", 332); start();
@@ -297,7 +450,7 @@
     stop();
     
     
-    cmd("敌人出现", 334); start();
+    cmd("敌人恢复", 334); start();
       entity("敌人序号", "enemy_index");
     stop();
     
@@ -334,6 +487,7 @@
        
     stop();
     
+    
     cmd("中止战斗", 340); start(); stop();
     cmd("打开菜单画面", 351);start(); stop();
     cmd("打开存档画面", 352);start(); stop();
@@ -346,22 +500,29 @@
     
     cmd("脚本内容", 655);
     start();
-      data();
+      data("string");
     stop();
     
    
     cmd("文章内容", 401);
     start();
-      data();
+      data("string");
     stop();
    
     cmd("字幕内容", 405);
     start();
-      data();
+      data("string");
     stop();
     
     cmd("注释内容", 408);
     start();
-      data();
+      data("string");
     stop();
-   
+    
+    cmd("商店内容", 605);
+    start();
+      entity("物品类型", "baseitem-type");
+      entity("物品id",   "baseitem-id");
+      enumcase("原价",   "是", "否", end_item());
+      entity("价格", "number");
+    stop();
