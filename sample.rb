@@ -18,6 +18,7 @@ class EventDisplay
       @kstr = ""
       thing
     }
+    msgbox_p self
     @str
   end
   
@@ -45,9 +46,7 @@ class EventDisplay
       @str << ">" * (4*@event.indent) << @kstr << "\n"
       @enable[@pos] = false  
     end
-    
     @pos -= 1 if @pos == @event.parameters.size
-    
     @enable[@pos] = false
     @case[@pos] = false
     @pos = @posstack.pop
@@ -73,9 +72,6 @@ class EventDisplay
     return unless @enable[@pos]
     @kstr << names[@event.parameters[@pos]] << "\n"
     @case[@pos] = true
-  rescue
-    msgbox_p self, names
-  
   end
   
   def enumcase(caption, *names, enditem)
@@ -97,10 +93,11 @@ class EventDisplay
       @enable[@pos] = false
     end
   end
+  
     
-  def data
+  def data(types = "string")
     return unless @enable[@pos]
     @kstr << @event.parameters.join("\n")
-    moveon
+    @event.parameters.size.times{moveon}
   end
 end
