@@ -1,4 +1,4 @@
-cmd("显示文章", 101);
+ cmd("显示文章", 101);
   start();
     entity("脸图", "string");
     entity("编号", "number");
@@ -51,6 +51,7 @@ cmd("显示文章", 101);
             selectcase("常量", "变量", end_item());
               casewhen(0); start(); entity("常量", "number"); stop(); 
               casewhen(1); start(); entity("变量", "var"); stop();
+            ;
             enumcase("关系", "等于", "以上", "以下", "大于", "小于", "不等于", end_item());
           stop();
           
@@ -75,6 +76,7 @@ cmd("显示文章", 101);
             casewhen(4); start(); entity("武器", "weapon"); stop();
             casewhen(5); start(); entity("防具", "armor"); stop();
             casewhen(6); start(); entity("状态", "state"); stop();
+           ;
         stop();
         
         casewhen(5);
@@ -130,7 +132,7 @@ cmd("显示文章", 101);
           entity("载具", "vehicle");
         stop();
         
-        
+     ;   
 
   stop();
   
@@ -156,7 +158,7 @@ cmd("显示文章", 101);
     entity("从", "var");
     entity("到", "var");
     enumcase("操作", "代入", "加上", "减去", "乘以", "除以", "取余", end_item());
-    selectcase("常量", "变量", "随机数", "游戏数据", "脚本");
+    selectcase("常量", "变量", "随机数", "游戏数据", "脚本", end_item());
       casewhen(0); start(); entity("常数", "number"); stop();      
       casewhen(1); start(); entity("变量", "var"); stop();
       casewhen(2); start(); entity("随机数", "number");entity("随机数", "number"); stop();
@@ -183,10 +185,113 @@ cmd("显示文章", 101);
            start();
              enumcase("其他数据", "地图ID", "队伍人数", "金钱", "步数", "游戏时间", "计时器", "存档回数", "战斗回数", end_item());
            stop();
-          
-      stop();    
+      stop();  
     stop();
-    cmd("脚本", 355);
+    
+    cmd("更改战斗BGM", 132); start(); entity("战斗BGM", "rpg::bgm"); stop();
+    cmd("更改战斗结束ME", 133); start(); entity("战斗结束ME", "rpg::me"); stop();
+    cmd("设置禁用存档", 134); start(); entity("禁用存档", "bool"); stop();
+    cmd("设置禁用菜单", 135); start(); entity("禁用菜单", "bool"); stop();
+    cmd("设置禁用遇敌", 136); start(); entity("禁用遇敌", "bool"); stop();
+    cmd("设置禁用整队", 137); start(); entity("禁用整队", "bool"); stop();
+    cmd("更改窗口色调", 138); start(); entity("色调", "tone"); stop();
+    cmd("更改名字", 320); start();
+      entity("角色", "actor");
+      entity("名字", "string");
+    stop(); 
+    
+    cmd("更改职业", 321); start();
+      entity("角色", "actor");
+      entity("职业", "class");
+    stop();
+    
+    
+    cmd("更改角色图像", 322); start();
+      entity("角色", "actor");
+      entity("行走图", "graphics/character");
+      entity("序号", "number");
+      entity("脸图", "graphics/face");
+      entity("序号", "number");
+    stop();
+    
+    cmd("更改载具图像", 323); start();
+      entity("载具", "vehicle");
+      entity("图像文件", "graphics/character");
+      entity("序号", "number");
+    stop();
+    
+    cmd("更改称号", 324); start();
+      entity("角色", "actor");
+      entity("称号", "string");
+    stop();
+    
+    cmd("增减敌人HP", 331); start();
+      entity("敌人序号", "enemy_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); entity("允许死亡", "bool"); stop();
+        casewhen(1); start(); entity("变量", "var"); stop();
+    stop();
+    
+    cmd("增减敌人MP", 332); start();
+      entity("敌人序号", "enemy_index");
+      enumcase("操作", "增加", "减少", end_item());
+      selectcase("常量", "变量", end_item());
+        casewhen(0); start(); entity("常量", "number"); stop();
+        casewhen(1); start(); entity("变量", "var"); stop();
+    stop();
+    
+    
+    cmd("更改敌人状态", 333); start();
+      entity("敌人序号", "enemy_index");
+      enumcase("操作", "增加状态", "减少状态", end_item());
+      entity("状态", "state");
+    stop();
+    
+    
+    cmd("敌人出现", 334); start();
+      entity("敌人序号", "enemy_index");
+    stop();
+    
+    
+    cmd("敌人出现", 335); start();
+      entity("敌人序号", "enemy_index");
+    stop();
+    
+    
+     cmd("敌人变身", 337); start();
+      entity("敌人序号", "enemy_index");
+      entity("敌人ID", "enemy");
+    stop();
+    
+    
+    cmd("显示战斗动画", 337); start();
+      entity("敌人序号", "enemy_index");
+      entity("动画", "animation");
+    stop();
+    
+    cmd("强制战斗", 339); start();
+       selectcase("敌人", "角色", end_item());
+          casewhen(0); start(); 
+            entity("敌人", "enemy_index"); 
+            entity("技能", "skill");
+            entity("目标", "battletarget"); 
+          stop();
+          casewhen(1); start(); 
+            entity("角色", "actor_index"); 
+            entity("技能", "skill");
+            entity("目标", "battletarget"); 
+          stop();
+       
+       
+    stop();
+    
+    cmd("中止战斗", 340); start(); stop();
+    cmd("打开菜单画面", 351);start(); stop();
+    cmd("打开存档画面", 352);start(); stop();
+    cmd("游戏结束", 353);start(); stop();
+    cmd("返回标题画面", 354);start(); stop();
+    cmd("脚本", 355);start(); stop();
     start();
       entity("脚本", "string");
     stop();
