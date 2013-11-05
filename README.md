@@ -5,7 +5,7 @@ RGSS3 Event Meta Code(RGSS3EMC)
 
 RGSS3EMC uses a C-language-like syntax to describe RGSS3event code.
 
-You can use it for varied purpose like:
+You can use it for varied purposes like:
 
  - Event Editor written in C#
 
