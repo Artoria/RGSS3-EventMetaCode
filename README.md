@@ -40,9 +40,10 @@ assuming each of the event commands is like an array 'void* event_items[]', and 
  
 which will not change the event command structure, often it means you just select a value in a combobox of the editor.
 
- - entity(*type*) : *type* can be 
+ - entity(*helpstring*, *type*) : *type* can be 
     "switch" "var" "actor" "class" "skill" "item" "weapon" "armor" "state" "animation" "tileset" "commonevent"
     "color" "tone" "string" "number"
    which means an entity to get, set, display etc.
+    
  
 
