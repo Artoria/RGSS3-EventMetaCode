@@ -11,7 +11,9 @@ class EventDisplay
     @str = ""
     eventlist.each{|x|
       @enable =  {}
+      @case  = {}
       @event = x
+      @posstack = []
       @pos = -1
       @kstr = ""
       thing
@@ -28,26 +30,39 @@ class EventDisplay
     end
   end
   
-  def start(); return unless @enable[@pos]; @enable[@pos + 1] = true; @pos += 1 end
+  def start()
+    (@start ||= 0)
+    @start += 1
+    @enable[@pos + 1] = @enable[@pos]
+    @posstack.push @pos
+    @pos += 1 
+  end
   
   def stop
-    return unless @enable[@pos]
-    if @pos == @event.parameters.size
-      @str << @kstr << "\n"
+    (@stop ||= 0)
+    @stop += 1
+    if @pos == @event.parameters.size && @enable[@pos]
+      @str << ">" * (4*@event.indent) << @kstr << "\n"
       @enable[@pos] = false  
-      @pos -= 1
     end
     
-    @enable[@pos] = false
-    @pos -= 1
+    @pos -= 1 if @pos == @event.parameters.size
     
+    @enable[@pos] = false
+    @case[@pos] = false
+    @pos = @posstack.pop
+    
+  end
+  
+  def moveon
+    @enable[@pos + 1] = true
+    @pos += 1
   end
   
   def entity(a, b)
     return unless @enable[@pos]
     @kstr << "#{a} #{b}(#{@event.parameters[@pos]})\n"
-    @enable[@pos+1] = true
-    @pos += 1
+    moveon
   end
   
   def end_item 
@@ -57,6 +72,10 @@ class EventDisplay
   def selectcase(*names, enditem)
     return unless @enable[@pos]
     @kstr << names[@event.parameters[@pos]] << "\n"
+    @case[@pos] = true
+  rescue
+    msgbox_p self, names
+  
   end
   
   def enumcase(caption, *names, enditem)
@@ -67,19 +86,21 @@ class EventDisplay
       else r = @event.parameters[@pos]
     end
     @kstr << "#{caption} #{names[r]}\n"
-    @enable[@pos+1] = true
-    @pos += 1
-  end
+    moveon
+ end
   
   def casewhen(id)
-    return unless @enable[@pos]
-    @enable[@pos+1] = id == @event.parameters[@pos]
+    return unless @case[@pos]
+    if @event.parameters[@pos] == id
+      @enable[@pos] = true
+    else
+      @enable[@pos] = false
+    end
   end
     
   def data
+    return unless @enable[@pos]
     @kstr << @event.parameters.join("\n")
-    @enable[@pos+1] = true
-    @pos += 1
+    moveon
   end
 end
-
