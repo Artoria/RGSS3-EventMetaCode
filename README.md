@@ -45,5 +45,5 @@ which will not change the event command structure, often it means you just selec
     "color" "tone" "string" "number" "graphics/?" "audio/?"  (? means a folder name)
    which means an entity to get, set, display etc.
     
- 
+ - data(): which means this piece of code is totally a string data (like message contents or comment contents) 
 
