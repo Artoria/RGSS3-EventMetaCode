@@ -188,6 +188,54 @@
       stop();  
     stop();
     
+    cmd("操作独立开关", 123); start();
+      entity("独立开关名", "string"); 
+      enumcase("操作", "打开", "关闭", end_item());
+    stop();
+    
+    cmd("操作计时器", 124); start();
+     selectcase("开始", "停止"); 
+        casewhen(0); start(); entity("秒数", "number"); end_item();
+        casewhen(1); start(); end_item();
+    stop();
+    
+    cmd("操作金钱", 125); start();
+      enumcase("操作", "增加", "减少", end_item());
+        selectcase("常量", "变量", end_item());
+          casewhen(0); start(); entity("常量", "number"); stop();
+          casewhen(1); start(); entity("变量", "var"); stop();
+    stop();
+    
+    cmd("增减物品", 126); start();
+      entity("物品", "item");
+      enumcase("操作", "增加", "减少", end_item());
+        selectcase("常量", "变量", end_item());
+          casewhen(0); start(); entity("常量", "number"); stop();
+          casewhen(1); start(); entity("变量", "var"); stop();
+    stop();
+    
+    cmd("增减武器", 127); start();
+      entity("武器", "weapon");
+      enumcase("操作", "增加", "减少", end_item());
+        selectcase("常量", "变量", end_item());
+          casewhen(0); start(); entity("常量", "number"); entity("包括装备的", "bool"); stop();
+          casewhen(1); start(); entity("变量", "var"); entity("包括装备的", "bool"); stop();
+    stop();
+    
+    cmd("增减防具", 128); start();
+      entity("防具", "armor");
+      enumcase("操作", "增加", "减少", end_item());
+        selectcase("常量", "变量", end_item());
+          casewhen(0); start(); entity("常量", "number"); entity("包括装备的", "bool"); stop();
+          casewhen(1); start(); entity("变量", "var"); entity("包括装备的", "bool"); stop();
+    stop();
+    
+    cmd("队伍管理",129); start();
+      entity("角色", "actor");
+      enumcase("入队离队", "入队", "离队");
+      enumcase("初始化", "是", "否");
+    stop();
+    
     cmd("更改战斗BGM", 132); start(); entity("战斗BGM", "rpg::bgm"); stop();
     cmd("更改战斗结束ME", 133); start(); entity("战斗结束ME", "rpg::me"); stop();
     cmd("设置禁用存档", 134); start(); entity("禁用存档", "bool"); stop();
