@@ -42,7 +42,7 @@ which will not change the event command structure, often it means you just selec
 
  - entity(*helpstring*, *type*) : *type* can be 
     "switch" "var" "actor" "class" "skill" "item" "weapon" "armor" "state" "animation" "tileset" "commonevent"
-    "color" "tone" "string" "number"
+    "color" "tone" "string" "number" "graphics/?" "audio/?"  (? means a folder name)
    which means an entity to get, set, display etc.
     
  
